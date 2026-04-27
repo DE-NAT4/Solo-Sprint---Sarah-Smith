@@ -15,8 +15,21 @@ class App:
         })
 
     def run(self):
-        # laceholder for the main application logic
-        print("App is running")
+        while True:
+            self.menu.display()
+            choice = self.menu.get_choice()
+            if choice == "0":
+                print("Exiting application.")
+                break
+            elif choice == "1":
+                pass
+            elif choice == "2":
+                pass
+            elif choice == "3":
+                pass
+            elif choice == "4":
+                pass
+          
 
 # Placeholder Menu class
 class Menu:
@@ -26,12 +39,28 @@ class Menu:
         self.title = title
         self.options = options
 
+    # Displays Menu
     def display(self):
         # Displays menu name
         print(f"\n{self.title}")
         # Displays menu options by iterating through the options dictionary
         for key in self.options.keys():
             print(f"{key} - {self.options[key]}")
+    
+    # Gets user input for menu choice and validates it
+    def get_choice(self):
+        while True:
+
+            # Get user input for menu choice
+            choice = input("Enter your choice: ")
+
+            # Validate user input against available options
+            if choice in self.options:
+                return choice
+            else:
+                print("Invalid choice. Please try again.")
+                self.display
+            
 
 # Placeholder User class
 class User:
