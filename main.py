@@ -22,7 +22,9 @@ class App:
                 print("Exiting application.")
                 break
             elif choice == "1":
-                pass
+                new_user = User.add_user(self)
+                self.active_user_lst.append(new_user)
+                print(f"User {new_user.name} added successfully.")
             elif choice == "2":
                 pass
             elif choice == "3":
@@ -59,17 +61,42 @@ class Menu:
                 return choice
             else:
                 print("Invalid choice. Please try again.")
-                self.display
+                self.display()
             
 
 # Placeholder User class
 class User:
-    def __init__(self, name):
+    def __init__(self, name, password = '', status = "active"):
         self.name = name
-        print(f"User {self.name} initialized")
+        self.password = password
+        self.status = status
+        
 
     def login(self):
-        print(f"User {self.name} logged in")
+        pass
+    def add_user(self):
+        user_name = input("Enter username: ")
+        print("Would you like to set a password? (y/n)")
+        set_password = input().lower()
+        if set_password == "y":
+            try:
+                password = input("Enter password: ").strip()
+            except AttributeError as e:
+                print(f"Error setting password: {e}")
+                password = ''
+        else:
+            password = ''
+        return User(user_name, password)
+    
+    def disable(self):
+        self.status = "disabled"
+
+    def enable(self):
+        self.status = "active"
+
+
+    def __str__(self):
+        return f"User: {self.name}, Status: {self.status}"
 
 ########## Main application ##########
 if __name__ == "__main__":
