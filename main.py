@@ -5,6 +5,8 @@ class App:
         # Create lists to hold active and disabled users
         self.active_user_lst = []
         self.disabled_user_lst = []
+
+        # Initialize the menu with options
         self.menu = Menu("Main Menu", {"1": "Add User", 
                                        "2": "View active and disabled users", 
                                        "3": """Enable/Disable Users""",
@@ -25,7 +27,11 @@ class Menu:
         self.options = options
 
     def display(self):
-       pass
+        # Displays menu name
+        print(f"\n{self.title}")
+        # Displays menu options by iterating through the options dictionary
+        for key in self.options.keys():
+            print(f"{key} - {self.options[key]}")
 
 # Placeholder User class
 class User:
