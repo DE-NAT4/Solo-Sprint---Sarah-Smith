@@ -1,3 +1,6 @@
+import os
+import csv
+
 ########## Main application entry point ############
 class App:
     def __init__(self):
@@ -13,6 +16,32 @@ class App:
                                        "4": "Test login",
                                       "0": "Exit"
         })
+
+        filename = 'users.csv'
+
+        # Check if the file already exists
+        if os.path.exists(filename):
+            print(f"'{filename}' found. Opening the file...")
+            
+            # Open and read the existing CSV file
+            with open(filename, mode='r', newline='') as file:
+                reader = csv.reader(file)
+                # print(type(reader))
+                # Read and print each row (optional, just to show it's working)
+                # for row in reader:
+                #     print(row)
+                    
+        else:
+            print(f"'{filename}' not found. Creating a new one...")
+            
+            # Create a new CSV file by opening it in write mode ('w')
+            with open(filename, mode='w', newline='') as file:
+                writer = csv.writer(file)
+                
+                # Optional: Write a header row to the new file
+                writer.writerow(['username', 'status', 'password'])
+                
+            # print("File created successfully.")
 
     def run(self):
         while True:
@@ -74,6 +103,7 @@ class User:
 
     def login(self):
         pass
+
     def add_user(self):
         user_name = input("Enter username: ")
         print("Would you like to set a password? (y/n)")

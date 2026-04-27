@@ -1,0 +1,6 @@
+username,status,password
+alice,active,pass123
+bob,disabled,
+carol,active,Secure!2026
+dave,disabled,
+everly,active,open_sesame
